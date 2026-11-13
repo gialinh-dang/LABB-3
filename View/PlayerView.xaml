@@ -47,7 +47,6 @@
                         </ProgressBar.Template>
                     </ProgressBar>
                 </StackPanel>
-
                 <Border Grid.Column="2" Background="White" CornerRadius="26" Padding="18,10" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
                         <fa:IconBlock Icon="Stopwatch" FontSize="22" Foreground="{StaticResource OrangeBrush}" Margin="0,0,8,0"/>
@@ -128,6 +127,8 @@
                                    Foreground="{StaticResource NavyBrush}" Margin="10,0"/>
                         <fa:IconBlock Icon="Star" Foreground="#FFC531" FontSize="22"/>
                     </StackPanel>
+                    <TextBlock Text="{Binding PercentText}" HorizontalAlignment="Center" Margin="0,8,0,0"
+                               FontSize="16" Foreground="{StaticResource TextBrush}"/>
                 </StackPanel>
             </Border>
 

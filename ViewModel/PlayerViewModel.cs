@@ -98,6 +98,13 @@ public class PlayerViewModel : ViewModelBase
         set { _resultMessage = value; RaisePropertyChanged(); }
     }
 
+    private string _percenText = "";
+    
+    public string PercentText
+    {
+        get => _percenText;
+        set { _percenText = value; RaisePropertyChanged(); }
+    }
     public string ScoreText => $"{CorrectCount} / {TotalQuestions}";
 
     public DelegateCommand AnswerCommand { get; }
@@ -215,7 +222,11 @@ public class PlayerViewModel : ViewModelBase
         _timer.Stop();
 
         double percent = (double)CorrectCount / TotalQuestions;
-        if (percent >= 0.8)
+        PercentText = $"{(int)Math.Round(percent * 100)}% correct";
+
+        if (percent == 1)
+            ResultMessage = "Perfect score!";
+        else if (percent >= 0.8)
             ResultMessage = "Great job!";
         else if (percent >= 0.5)
             ResultMessage = "Good try!";
