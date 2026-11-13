@@ -117,7 +117,7 @@ namespace LABB_3.ViewModel
                 Packs.Add(CreateAdditionPack());
                 Packs.Add(CreateSubtractionPack());
                 Packs.Add(CreateMultiplicationPack());
-
+                Packs.Add(CreateDivisionPack());
             }
          
             ActivePack = Packs[0];
@@ -253,6 +253,16 @@ namespace LABB_3.ViewModel
             pack.Questions.Add(new Question("3 x 4 = ?", "12", "7", "14", "10"));
             pack.Questions.Add(new Question("6 x 7 = ?", "42", "36", "48", "13"));
             pack.Questions.Add(new Question("8 x 5 = ?", "40", "35", "45", "13"));
+            return pack;
+        }
+        private static QuestionPack CreateDivisionPack()
+        {
+            var pack = new QuestionPack("Division (Medium)", Difficulty.Medium, 30);
+            pack.Questions.Add(new Question("8 ÷ 2 = ?", "4", "6", "3", "16"));
+            pack.Questions.Add(new Question("12 ÷ 3 = ?", "4", "3", "6", "9"));
+            pack.Questions.Add(new Question("20 ÷ 5 = ?", "4", "5", "15", "10"));
+            pack.Questions.Add(new Question("18 ÷ 6 = ?", "3", "2", "4", "12"));
+            pack.Questions.Add(new Question("10 ÷ 2 = ?", "5", "8", "4", "12"));
             return pack;
         }
     }
