@@ -1,5 +1,6 @@
 ﻿using LABB_3.Command;
 using LABB_3.Model;
+using LABB_3.Services;
 using LABB_3.ViewModel;
 
 namespace LABB_3.ViewModel
@@ -49,6 +50,8 @@ namespace LABB_3.ViewModel
         {
             var pack = Main.ActivePack;
             if (pack == null || ActiveQuestion == null) return;
+
+            if (!DialogService.Confirm($"Delete the question\"{ActiveQuestion.Query}\"?")) return;
 
             pack.Questions.Remove(ActiveQuestion);
             ActiveQuestion = pack.Questions.FirstOrDefault();
