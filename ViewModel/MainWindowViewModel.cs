@@ -36,6 +36,7 @@ namespace LABB_3.ViewModel
                 _activePack = value;
                 RaisePropertyChanged();
                 ConfigurationViewModel.ActiveQuestion = value?.Questions.FirstOrDefault();
+                ConfigurationViewModel.IsEditingQuestion = false;
             }
         }
 
