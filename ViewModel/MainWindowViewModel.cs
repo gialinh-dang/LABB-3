@@ -73,6 +73,7 @@ namespace LABB_3.ViewModel
         public DelegateCommand ImportCommand { get; }
         public DelegateCommand ExitCommand { get; }
         public DelegateCommand ToggleFullScreenCommand { get; }
+        public DelegateCommand ExitFullScreenCommand { get; }
 
         public MainWindowViewModel()
         {
@@ -89,6 +90,7 @@ namespace LABB_3.ViewModel
                 _ => IsConfigurationMode && ActivePack != null);
             ExitCommand = new DelegateCommand(_ => DialogService.CloseMainWindow());
             ToggleFullScreenCommand = new DelegateCommand(_ => IsFullScreen = !IsFullScreen);
+            ExitFullScreenCommand = new DelegateCommand(_ => IsFullScreen = false, _ => IsFullScreen);
         }
 
         // ---------- Load / Save ----------

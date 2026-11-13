@@ -16,6 +16,7 @@
         <KeyBinding Key="Insert" Command="{Binding ConfigurationViewModel.AddQuestionCommand}"/>
         <KeyBinding Key="Delete" Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"/>
         <KeyBinding Key="F11" Command="{Binding ToggleFullScreenCommand}"/>
+        <KeyBinding Key="Escape" Command="{Binding ExitFullScreenCommand}"/>
     </Window.InputBindings>
     <Window.Style>
         <Style TargetType="Window">
