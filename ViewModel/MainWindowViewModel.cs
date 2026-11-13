@@ -114,20 +114,14 @@ namespace LABB_3.ViewModel
 
             if (Packs.Count == 0)
             {
-                Packs.Add(CreateDefaultPack());
+                Packs.Add(CreateAdditionPack());
                 Packs.Add(CreateSubtractionPack());
+                Packs.Add(CreateMultiplicationPack());
 
             }
          
             ActivePack = Packs[0];
-        }
-        private static QuestionPack CreateSubtractionPack()
-        {
-            var pack = new QuestionPack("Subtraction (Easy)", Difficulty.Easy, 20);
-            pack.Questions.Add(new Question("10 - 4 = ?", "6", "5", "7", "4"));
-            pack.Questions.Add(new Question("15 - 8 = ?", "7", "6", "9", "8"));
-            pack.Questions.Add(new Question("12 - 5 = ?", "6", "8", "7", "4"));
-            return pack;
+      
             
         }
         public async Task SaveAsync()
@@ -235,12 +229,30 @@ namespace LABB_3.ViewModel
             IsPlayMode = false;
         }
 
-        private static QuestionPack CreateDefaultPack()
+        private static QuestionPack CreateAdditionPack()
         {
             var pack = new QuestionPack("Addition (Easy)", Difficulty.Easy, 20);
             pack.Questions.Add(new Question("7 + 5 = ?", "12", "10", "13", "15"));
             pack.Questions.Add(new Question("3 + 4 = ?", "7", "6", "8", "9"));
             pack.Questions.Add(new Question("9 + 6 = ?", "15", "14", "16", "13"));
+            return pack;
+        }
+
+        private static QuestionPack CreateSubtractionPack()
+        {
+            var pack = new QuestionPack("Subtraction (Easy)", Difficulty.Easy, 20);
+            pack.Questions.Add(new Question("10 - 4 = ?", "6", "5", "7", "4"));
+            pack.Questions.Add(new Question("15 - 8 = ?", "7", "6", "9", "8"));
+            pack.Questions.Add(new Question("12 - 5 = ?", "6", "8", "7", "4"));
+            return pack;
+
+        }
+        private static QuestionPack CreateMultiplicationPack()
+        {
+            var pack = new QuestionPack("Multiplication (Medium)", Difficulty.Medium, 30);
+            pack.Questions.Add(new Question("3 x 4 = ?", "12", "7", "14", "10"));
+            pack.Questions.Add(new Question("6 x 7 = ?", "42", "36", "48", "13"));
+            pack.Questions.Add(new Question("8 x 5 = ?", "40", "35", "45", "13"));
             return pack;
         }
     }
