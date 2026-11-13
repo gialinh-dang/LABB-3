@@ -32,11 +32,19 @@
 
         <MenuItem Header="_View">
             <MenuItem Header="_Play" InputGestureText="Ctrl+P" Command="{Binding PlayCommand}">
-                <MenuItem.Icon><fa:IconImage Icon="Play" Width="14" Height="14" Foreground="{StaticResource GreenBrush}"/></MenuItem.Icon>
+                <MenuItem.Icon>
+                    <fa:IconImage Icon="Play" Width="14" Height="14" Foreground="{StaticResource GreenBrush}"/>
+                </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="_Edit" InputGestureText="Ctrl+E" Command="{Binding EditModeCommand}">
-                <MenuItem.Icon><fa:IconImage Icon="Pen" Width="14" Height="14" Foreground="{StaticResource PurpleBrush}"/></MenuItem.Icon>
+                <MenuItem.Icon>
+                    <fa:IconImage Icon="Pen" Width="14" Height="14" Foreground="{StaticResource PurpleBrush}"/>
+                </MenuItem.Icon>
             </MenuItem>
+            <Separator/>
+            <MenuItem Header="_Full Screen" InputGestureText="F11"
+                      IsChecked="{Binding IsFullScreen, Mode=OneWay}"
+                      Command="{Binding ToggleFullScreenCommand}"/>
         </MenuItem>
     </Menu>
 </UserControl>

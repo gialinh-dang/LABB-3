@@ -15,7 +15,18 @@
         <KeyBinding Modifiers="Ctrl" Key="E" Command="{Binding EditModeCommand}"/>
         <KeyBinding Key="Insert" Command="{Binding ConfigurationViewModel.AddQuestionCommand}"/>
         <KeyBinding Key="Delete" Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"/>
+        <KeyBinding Key="F11" Command="{Binding ToggleFullScreenCommand}"/>
     </Window.InputBindings>
+    <Window.Style>
+        <Style TargetType="Window">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsFullScreen}" Value="True">
+                    <Setter Property="WindowStyle" Value="None"/>
+                    <Setter Property="WindowState" Value="Maximized"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
 
     <Grid Background="{StaticResource SkyBrush}">
         <Path Fill="#B5E59A" Stretch="Fill" Height="170" VerticalAlignment="Bottom"

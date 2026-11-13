@@ -59,6 +59,12 @@ namespace LABB_3.ViewModel
 
         public bool IsConfigurationMode => !IsPlayMode;
 
+        private bool _isFullScreen;
+        public bool IsFullScreen
+        {
+            get => _isFullScreen;
+            set { _isFullScreen = value; RaisePropertyChanged(); }
+        }
         public DelegateCommand NewPackCommand { get; }
         public DelegateCommand DeletePackCommand { get; }
         public DelegateCommand PackOptionsCommand { get; }
@@ -66,6 +72,7 @@ namespace LABB_3.ViewModel
         public DelegateCommand EditModeCommand { get; }
         public DelegateCommand ImportCommand { get; }
         public DelegateCommand ExitCommand { get; }
+        public DelegateCommand ToggleFullScreenCommand { get; }
 
         public MainWindowViewModel()
         {
@@ -81,6 +88,7 @@ namespace LABB_3.ViewModel
                 _ => DialogService.ShowImportDialog(new ImportViewModel(this)),
                 _ => IsConfigurationMode && ActivePack != null);
             ExitCommand = new DelegateCommand(_ => DialogService.CloseMainWindow());
+            ToggleFullScreenCommand = new DelegateCommand(_ => IsFullScreen = !IsFullScreen);
         }
 
         // ---------- Load / Save ----------
