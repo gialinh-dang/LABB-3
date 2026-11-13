@@ -1,0 +1,79 @@
+﻿<Window x:Class="LABB_3.Dialogs.ImportQuestionsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        Title="Import Questions" Width="500" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterOwner" FontFamily="Segoe UI">
+
+    <Border Style="{StaticResource Card}" Margin="16" Padding="26">
+        <StackPanel>
+            <DockPanel Margin="0,0,0,10" Background="Transparent" MouseLeftButtonDown="Header_MouseLeftButtonDown">
+                <Button DockPanel.Dock="Right" IsCancel="True" Style="{StaticResource IconButton}"
+                        Background="{StaticResource SoftGrayBrush}">
+                    <fa:IconBlock Icon="Xmark" Foreground="{StaticResource NavyBrush}"/>
+                </Button>
+                <fa:IconBlock Icon="CloudArrowDown" FontSize="26" Foreground="{StaticResource PurpleBrush}" Margin="0,0,10,0"/>
+                <TextBlock Text="Import Questions" Style="{StaticResource Heading}"/>
+            </DockPanel>
+
+            <TextBlock Margin="0,0,0,18" FontSize="14" Foreground="{StaticResource TextBrush}">
+                <Run Text="Questions will be added to:"/>
+                <Run Text="{Binding TargetPackName, Mode=OneWay}" FontWeight="Bold"/>
+            </TextBlock>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Category:" Style="{StaticResource Label}"/>
+                <ComboBox Grid.Column="1" DisplayMemberPath="Name"
+                          ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}"/>
+
+                <TextBlock Grid.Row="1" Text="Difficulty:" Style="{StaticResource Label}"/>
+                <ComboBox Grid.Row="1" Grid.Column="1"
+                          ItemsSource="{Binding Difficulties}" SelectedItem="{Binding Difficulty}"/>
+
+                <TextBlock Grid.Row="2" Text="Questions:" Style="{StaticResource Label}"/>
+                <DockPanel Grid.Row="2" Grid.Column="1">
+                    <TextBlock DockPanel.Dock="Right" Text="{Binding NumberOfQuestions}" Width="30" TextAlignment="Right"
+                               FontSize="16" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" VerticalAlignment="Center"/>
+                    <Slider Minimum="1" Maximum="50" TickFrequency="1" IsSnapToTickEnabled="True"
+                            VerticalAlignment="Center" Value="{Binding NumberOfQuestions}"/>
+                </DockPanel>
+            </Grid>
+
+            <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap" FontSize="14" FontWeight="SemiBold" Margin="0,18,0,0">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="{StaticResource NavyBrush}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsError}" Value="True">
+                                <Setter Property="Foreground" Value="#E5484D"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <UniformGrid Columns="2" Margin="0,20,0,0">
+                <Button Content="Close" IsCancel="True" Style="{StaticResource PillButton}" Margin="0,0,8,0"
+                        Background="{StaticResource SoftGrayBrush}" Foreground="{StaticResource NavyBrush}"/>
+                <Button Style="{StaticResource PillButton}" Background="{StaticResource PurpleBrush}" Margin="8,0,0,0"
+                        Command="{Binding ImportCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconBlock Icon="Download" Margin="0,0,8,0"/>
+                        <TextBlock Text="Import"/>
+                    </StackPanel>
+                </Button>
+            </UniformGrid>
+        </StackPanel>
+    </Border>
+</Window>

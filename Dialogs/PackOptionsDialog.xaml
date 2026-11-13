@@ -1,0 +1,52 @@
+<Window x:Class="LABB_3.Dialogs.PackOptionsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        Title="Pack Options" Width="460" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterOwner" FontFamily="Segoe UI">
+
+    <Border Style="{StaticResource Card}" Margin="16" Padding="26">
+        <StackPanel>
+            <!-- Header (you can drag the window from here) -->
+            <DockPanel Margin="0,0,0,20" Background="Transparent" MouseLeftButtonDown="Header_MouseLeftButtonDown">
+                <Button DockPanel.Dock="Right" IsCancel="True" Style="{StaticResource IconButton}"
+                        Background="{StaticResource SoftGrayBrush}">
+                    <fa:IconBlock Icon="Xmark" Foreground="{StaticResource NavyBrush}"/>
+                </Button>
+                <fa:IconBlock Icon="Gear" FontSize="26" Foreground="{StaticResource BlueBrush}" Margin="0,0,10,0"/>
+                <TextBlock Text="Pack Options" Style="{StaticResource Heading}"/>
+            </DockPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Pack Name:" Style="{StaticResource Label}"/>
+                <TextBox Grid.Column="1" Margin="0,0,0,12"
+                         Text="{Binding ActivePack.Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Grid.Row="1" Text="Difficulty:" Style="{StaticResource Label}"/>
+                <ComboBox Grid.Row="1" Grid.Column="1"
+                          ItemsSource="{Binding Difficulties}" SelectedItem="{Binding ActivePack.Difficulty}"/>
+
+                <TextBlock Grid.Row="2" Text="Time per Question:" Style="{StaticResource Label}"/>
+                <ComboBox Grid.Row="2" Grid.Column="1" ItemStringFormat="{}{0} seconds"
+                          ItemsSource="{Binding TimeOptions}" SelectedItem="{Binding ActivePack.TimeLimitInSeconds}"/>
+            </Grid>
+
+            <UniformGrid Columns="2" Margin="0,20,0,0">
+                <Button Content="Cancel" IsCancel="True" Style="{StaticResource PillButton}" Margin="0,0,8,0"
+                        Background="{StaticResource SoftGrayBrush}" Foreground="{StaticResource NavyBrush}"/>
+                <Button Content="Save" IsDefault="True" Click="Save_Click" Style="{StaticResource PillButton}" Margin="8,0,0,0"/>
+            </UniformGrid>
+        </StackPanel>
+    </Border>
+    </Window>
