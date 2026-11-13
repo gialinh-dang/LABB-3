@@ -120,7 +120,7 @@ public class PlayerViewModel : ViewModelBase
 
         AnswerCommand = new DelegateCommand(p => CheckAnswer(p as AnswerOption));
         PlayAgainCommand = new DelegateCommand(_ => { if (_pack != null) StartQuiz(_pack); });
-        BackToMenuCommand = new DelegateCommand(_ => Main.ShowEditMode());
+        BackToMenuCommand = new DelegateCommand(_ => Main.ShowChoosePack());
     }
 
     public void StartQuiz(QuestionPack pack)

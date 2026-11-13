@@ -13,7 +13,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Top bar: home button, progress, timer -->
+            <!-- Top bar: question counter + progress bar in the middle of the page, timer on the right -->
             <Grid Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -21,26 +21,24 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Style="{StaticResource IconButton}" Width="52" Height="52" Background="White"
-                        ToolTip="Back to edit mode" Command="{Binding BackToMenuCommand}">
-                    <fa:IconBlock Icon="House" FontSize="22" Foreground="{StaticResource BlueBrush}"/>
-                </Button>
+                <!-- No back/home button while playing: the player has to finish the quiz -->
 
-                <StackPanel Grid.Column="1" Width="320" HorizontalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="{StaticResource NavyBrush}">
+                <!-- ColumnSpan="3" = the whole width, so the counter is centered on the page -->
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Width="440" HorizontalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Foreground="{StaticResource NavyBrush}">
                         <Run Text="Question"/>
                         <Run Text="{Binding QuestionNumber, Mode=OneWay}"/>
                         <Run Text="/"/>
                         <Run Text="{Binding TotalQuestions, Mode=OneWay}"/>
                     </TextBlock>
-                    <ProgressBar Height="16" Margin="0,8,0,0" Foreground="{StaticResource GreenBrush}"
+                    <ProgressBar Height="22" Margin="0,10,0,0" Foreground="{StaticResource GreenBrush}"
                                  Maximum="{Binding TotalQuestions}" Value="{Binding QuestionNumber, Mode=OneWay}">
                         <ProgressBar.Template>
                             <ControlTemplate TargetType="ProgressBar">
-                                <Border Background="White" CornerRadius="8">
+                                <Border Background="White" CornerRadius="11">
                                     <Grid x:Name="PART_Track">
                                         <Border x:Name="PART_Indicator" HorizontalAlignment="Left"
-                                                Background="{TemplateBinding Foreground}" CornerRadius="8"/>
+                                                Background="{TemplateBinding Foreground}" CornerRadius="11"/>
                                     </Grid>
                                 </Border>
                             </ControlTemplate>

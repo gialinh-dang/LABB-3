@@ -36,7 +36,9 @@ namespace LABB_3.ViewModel
                 _activePack = value;
                 RaisePropertyChanged();
                 ConfigurationViewModel.ActiveQuestion = value?.Questions.FirstOrDefault();
-                ConfigurationViewModel.IsEditingQuestion = false;
+                // A question from the old pack can not be edited any more
+                if (ConfigurationViewModel.CurrentPage == ConfigurationPage.EditQuestion)
+                    ConfigurationViewModel.CurrentPage = ConfigurationPage.Questions;
             }
         }
 
@@ -155,6 +157,7 @@ namespace LABB_3.ViewModel
             {
                 Packs.Add(pack);
                 ActivePack = pack;
+                ConfigurationViewModel.CurrentPage = ConfigurationPage.Questions;   // go straight to the new, empty pack
                 await SaveAsync();
             }
         }
@@ -228,6 +231,14 @@ namespace LABB_3.ViewModel
         {
             PlayerViewModel.StopQuiz();
             IsPlayMode = false;
+            ConfigurationViewModel.CurrentPage = ConfigurationPage.Home;   // back to the start page
+        }
+
+        // "Menu" on the result screen: back to the list of packs to play
+        public void ShowChoosePack()
+        {
+            ShowEditMode();
+            ConfigurationViewModel.ShowPacksToPlay();
         }
 
         private static QuestionPack CreateAdditionPack()
