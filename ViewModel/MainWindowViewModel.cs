@@ -3,6 +3,7 @@ using LABB_3.Model;
 using LABB_3.Services;
 using LABB_3.ViewModel;
 using System.Collections.ObjectModel;
+using System.Drawing.Text;
 using System.IO;
 using System.Text.Json;
 using System.Xml.Linq;
@@ -102,11 +103,23 @@ namespace LABB_3.ViewModel
             }
 
             if (Packs.Count == 0)
+            {
                 Packs.Add(CreateDefaultPack());
+                Packs.Add(CreateSubtractionPack());
 
+            }
+         
             ActivePack = Packs[0];
         }
-
+        private static QuestionPack CreateSubtractionPack()
+        {
+            var pack = new QuestionPack("Subtraction (Easy)", Difficulty.Easy, 20);
+            pack.Questions.Add(new Question("10 - 4 = ?", "6", "5", "7", "4"));
+            pack.Questions.Add(new Question("15 - 8 = ?", "7", "6", "9", "8"));
+            pack.Questions.Add(new Question("12 - 5 = ?", "6", "8", "7", "4"));
+            return pack;
+            
+        }
         public async Task SaveAsync()
         {
             try
